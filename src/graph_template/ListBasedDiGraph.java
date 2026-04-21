@@ -10,7 +10,9 @@ public class ListBasedDiGraph implements DiGraph {
 
 	@Override
 	public Boolean addNode(GraphNode node) {
-		
+		if (nodeList.contains(node)) {
+			return false;
+		}
 		nodeList.add(node);
 		return true;
 	}
@@ -18,26 +20,25 @@ public class ListBasedDiGraph implements DiGraph {
 	@Override
 	public Boolean removeNode(GraphNode node) {
 		// TODO Auto-generated method stub
-		return null;
+		return nodeList.remove(node);
 	}
 
 	@Override
 	public Boolean setNodeValue(GraphNode node, String newNodeValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (!nodeList.contains(node)) {
+			return false;
+		}
+		node.setValue(newNodeValue);
+		return true;
 	}
 
 	@Override
 	public String getNodeValue(GraphNode node) {
-		// TODO Auto-generated method stub
-		return null;
+		return node.getValue();
 	}
 
 	@Override
 	public Boolean addEdge(GraphNode fromNode, GraphNode toNode, Integer weight) {
-
-		//BAD
-		fromNode.addNeighbor(toNode, weight);
 		
 		//GOOD
 		GraphNode targetFromNode = getNode(fromNode.getValue());
@@ -50,13 +51,14 @@ public class ListBasedDiGraph implements DiGraph {
 
 	@Override
 	public Boolean removeEdge(GraphNode fromNode, GraphNode toNode) {
+		return fromNode.removeNeighbor(toNode);
 		// TODO Auto-generated method stub
-		return null;
+	
 	}
 
 	@Override
 	public Boolean setEdgeValue(GraphNode fromNode, GraphNode toNode, Integer newWeight) {
-		// TODO Auto-generated method stub
+		// toNode
 		return null;
 	}
 
