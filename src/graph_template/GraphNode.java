@@ -40,7 +40,24 @@ public class GraphNode {
 		return null;
 	}
 	
-
+	public Boolean setEdgeWeight(GraphNode neighbor, Integer weight) {
+		GraphNode edge = null;
+		
+		for (GraphNode thisNode: paths.keySet()) {
+			if (thisNode.getValue().equals(neighbor.getValue())) {
+				edge = thisNode;
+				break;
+			}
+		}
+		
+		if (edge != null) {
+			paths.put(edge, weight);
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public Boolean removeNeighbor(GraphNode neighbor) {
 		Boolean returnValue = false;
 		for (GraphNode thisNode : paths.keySet()) {

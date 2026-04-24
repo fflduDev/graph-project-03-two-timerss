@@ -1,8 +1,7 @@
 
 package graph_template;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
  
 
 public class ListBasedDiGraph implements DiGraph {
@@ -43,9 +42,13 @@ public class ListBasedDiGraph implements DiGraph {
 		//GOOD
 		GraphNode targetFromNode = getNode(fromNode.getValue());
 		GraphNode targetToNode = getNode(toNode.getValue());
-	 	 
+	 	
+		if (targetFromNode == null || targetToNode == null) {
+			return null;
+		}
+		
+		
 		targetFromNode.addNeighbor(targetToNode, weight);
-	
 		return true;
 	}
 
@@ -58,32 +61,82 @@ public class ListBasedDiGraph implements DiGraph {
 
 	@Override
 	public Boolean setEdgeValue(GraphNode fromNode, GraphNode toNode, Integer newWeight) {
-		// toNode
-		return null;
+		GraphNode targetFromNode = getNode(fromNode.getValue());
+		GraphNode targetToNode = getNode(toNode.getValue());
+		
+		if (targetFromNode == null || targetToNode == null) {
+			return false;
+		}
+		
+		return targetFromNode.setEdgeWeight(targetToNode, newWeight);
+	
 	}
 
 	@Override
 	public Integer getEdgeValue(GraphNode fromNode, GraphNode toNode) {
-		// TODO Auto-generated method stub
-		return null;
+		GraphNode targetFromNode = getNode(fromNode.getValue());
+		GraphNode targetToNode = getNode(toNode.getValue());
+		
+		if (targetFromNode == null || targetToNode == null) {
+			return null;
+		}
+		
+		return targetFromNode.getDistanceToNeighbor(targetToNode);
+		
 	}
 
 	@Override
 	public List<GraphNode> getAdjacentNodes(GraphNode node) {
-		// TODO Auto-generated method stub
-		return null;
+		if (node == null|| node.getNeighbors() == null) {
+			return new ArrayList<>();
+		}
+		
+		return node.getNeighbors();
 	}
 
 	@Override
 	public Boolean nodesAreAdjacent(GraphNode fromNode, GraphNode toNode) {
-		// TODO Auto-generated method stub
-		return null;
+		GraphNode targetFromNode = getNode(fromNode.getValue());
+		GraphNode targetToNode = getNode(toNode.getValue());
+		
+		if (targetFromNode == null || targetToNode == null) {
+			return false;
+		}
+		
+		return targetFromNode.getNeighbors() != null && 
+			   targetFromNode.getNeighbors().contains(targetToNode);
 	}
 
 	@Override
 	public Boolean nodeIsReachable(GraphNode fromNode, GraphNode toNode) {
-		// TODO Auto-generated method stub
-		return null;
+		GraphNode targetFromNode = getNode(fromNode.getValue());
+		GraphNode targetToNode = getNode(toNode.getValue());
+		
+		if (targetFromNode == null || targetToNode == null) {
+			return false;
+		}
+		
+		Queue <GraphNode> queue = new LinkedList<>();
+		Set <GraphNode> visitedNodes = new HashSet<>();
+		
+		queue.add(targetFromNode);
+		visitedNodes.add(targetFromNode);
+		
+		while (!queue.isEmpty()) {
+			GraphNode current = queue.remove();
+			if (current.equals(targetToNode)) {
+				return true;
+			}
+			
+			for (GraphNode neighbor: current.getNeighbors()) {
+				if (!visitedNodes.contains(neighbor)) {
+					visitedNodes.add(neighbor);
+					queue.add(neighbor);
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

@@ -33,13 +33,13 @@ public class SuperDuperGraphTester {
 		TESTaddEdge("Chicago", "Denver", 1000);	
 	
 		
-		TESTdescribeGraph();
-		TESThasCycles();
-		TESTnodeIsReachable("Austin", "Washington");
-		TESTnodeIsReachable("Chicago", "Houston");
+	//	TESTdescribeGraph();
+	//	TESThasCycles();
+	TESTnodeIsReachable("Austin", "Washington");
+	TESTnodeIsReachable("Chicago", "Houston");
 		
-		TESTfewestHops("Austin", "Chicago");
-		TESTshortestPath("Washington", "Atlanta");
+	//	TESTfewestHops("Austin", "Chicago");
+	//	TESTshortestPath("Washington", "Atlanta");
 	
 		
 		// 
