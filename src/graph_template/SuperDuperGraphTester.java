@@ -46,7 +46,8 @@ public class SuperDuperGraphTester {
 		//ADD MORE TESTS HERE!!!
 		//
 				
-		
+		TESTfewestHops("Washington", "Dallas");
+		TESTfewestHops("Denver", "Austin");
 		
 	}
 	
