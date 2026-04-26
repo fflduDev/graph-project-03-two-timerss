@@ -39,7 +39,7 @@ public class SuperDuperGraphTester {
 	TESTnodeIsReachable("Chicago", "Houston");
 		
 	//	TESTfewestHops("Austin", "Chicago");
-	//	TESTshortestPath("Washington", "Atlanta");
+	TESTshortestPath("Washington", "Atlanta");
 	
 		
 		// 

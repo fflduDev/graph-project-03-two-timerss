@@ -272,8 +272,53 @@ public class ListBasedDiGraph implements DiGraph {
 
 	@Override
 	public int shortestPath(GraphNode fromNode, GraphNode toNode) {
-		// TODO Auto-generated method stub
-		return 0;
+		GraphNode targetFromNode = getNode(fromNode.getValue());
+		GraphNode targetToNode = getNode(toNode.getValue());
+		
+		if (targetFromNode == null || targetToNode == null) {
+			return -1;
+		}
+		
+		Set <GraphNode> visitedNodes = new HashSet<>();
+		Map <GraphNode, Integer> paths = new HashMap<>();
+		
+		for (GraphNode node: nodeList) {
+			paths.put(node, Integer.MAX_VALUE);
+		}
+		
+		paths.put(targetFromNode, 0);
+		
+		while (visitedNodes.size() < paths.size()) {
+			GraphNode smallestNode = null;
+			Integer smallestDistance = Integer.MAX_VALUE;
+			
+			for (GraphNode key: paths.keySet()) {
+				if (!visitedNodes.contains(key)) {
+					Integer distance = paths.get(key);
+					if (distance < smallestDistance) {
+						smallestDistance = distance;
+						smallestNode = key;
+					}
+				}
+			}
+			
+			if (smallestNode.equals(targetToNode)) {
+				return smallestDistance;
+			}
+				else {
+					visitedNodes.add(smallestNode);
+					for (GraphNode neighbor: smallestNode.getNeighbors()) {
+						Integer distance = smallestDistance + getEdgeValue(smallestNode, neighbor);
+						if (distance < paths.get(neighbor)) {
+							paths.put(neighbor, distance);
+						}
+					}
+				}
+			}
+			
+		
+		
+		return -1;
 	}
 
  
