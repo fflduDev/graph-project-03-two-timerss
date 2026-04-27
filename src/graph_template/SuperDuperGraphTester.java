@@ -33,13 +33,14 @@ public class SuperDuperGraphTester {
 		TESTaddEdge("Chicago", "Denver", 1000);	
 	
 		
-	//	TESTdescribeGraph();
-	//	TESThasCycles();
-	TESTnodeIsReachable("Austin", "Washington");
-	TESTnodeIsReachable("Chicago", "Houston");
+		TESTdescribeGraph();
+		TESThasCycles();
 		
-	//	TESTfewestHops("Austin", "Chicago");
-	TESTshortestPath("Washington", "Atlanta");
+		TESTnodeIsReachable("Austin", "Washington");
+		TESTnodeIsReachable("Chicago", "Houston");
+		
+		TESTfewestHops("Austin", "Chicago");
+		TESTshortestPath("Washington", "Atlanta");
 	
 		
 		// 
@@ -48,6 +49,14 @@ public class SuperDuperGraphTester {
 				
 		TESTfewestHops("Washington", "Dallas");
 		TESTfewestHops("Denver", "Austin");
+		
+		TESTshortestPath("Houston", "Washington");
+		TESTshortestPath("Chicago", "Austin");
+		
+		TESTshortestPath("Austin", "Houston");
+		TESTshortestPath("Houston", "Atlanta");
+		
+		TESTshortestPath("Austin", "Austin");
 		
 	}
 	

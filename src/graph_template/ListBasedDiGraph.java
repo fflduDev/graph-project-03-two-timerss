@@ -302,9 +302,14 @@ public class ListBasedDiGraph implements DiGraph {
 				}
 			}
 			
+			if (smallestNode == null) {
+			    return -1;
+			}
+			
 			if (smallestNode.equals(targetToNode)) {
 				return smallestDistance;
 			}
+			
 				else {
 					visitedNodes.add(smallestNode);
 					for (GraphNode neighbor: smallestNode.getNeighbors()) {
